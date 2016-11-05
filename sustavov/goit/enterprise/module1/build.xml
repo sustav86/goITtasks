@@ -1,0 +1,29 @@
+<project name="ant-timeCountingCollection" basedir=".">
+    <property name="src" location="." />
+    <property name="build" location="build" />
+    <property name="dist" location="dist" />
+    <!--<property name="build.sysclasspath" value="last"/>-->
+
+    <target name="init">
+        <mkdir dir="${build}"/>
+        <mkdir dir="${dist}"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${build}"/>
+        <delete dir="${dist}"/>
+    </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src}" destdir="${build}" source="1.8" target="1.8" includeantruntime="false"/>
+    </target>
+
+    <target name="dist" depends="compile">
+        <jar destfile="${dist}/antTimeCountingCollection.jar">
+            <fileset dir="${build}"/>
+            <manifest>
+                <attribute name="Main-Class" value="sustavov/goit/enterprise/module1/Solution"/>
+            </manifest>
+        </jar>
+    </target>
+</project>
